@@ -47,6 +47,17 @@
         .modal-content button:hover {
             background-color: #218838;
         }
+        .reservation-note {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .reservation-note p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +92,11 @@
 
             <div class="contactForm">
                 <h2>Table Reservations</h2>
+                
+                <div class="reservation-note">
+                    <p><strong>Note:</strong> All reservations end at 8:00 PM.</p>
+                </div>
+                
                 <form>
                     <div class="formBox">
                         <div class="inputBox w50">
@@ -139,23 +155,25 @@
         })();
 
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('form').addEventListener('submit', function (event) {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
 
                 var formData = {
-                    firstName: event.target.querySelector('input[name="firstName"]').value,
-                    lastName: event.target.querySelector('input[name="lastName"]').value,
-                    email: event.target.querySelector('input[name="email"]').value,
-                    mobileNumber: event.target.querySelector('input[name="mobileNumber"]').value,
-                    peopleCount: event.target.querySelector('input[name="peopleCount"]').value,
-                    date: event.target.querySelector('input[name="date"]').value,
-                    time: event.target.querySelector('input[name="time"]').value,
-                    message: event.target.querySelector('textarea').value
+                    firstName: form.querySelector('input[name="firstName"]').value,
+                    lastName: form.querySelector('input[name="lastName"]').value,
+                    email: form.querySelector('input[name="email"]').value,
+                    mobileNumber: form.querySelector('input[name="mobileNumber"]').value,
+                    peopleCount: form.querySelector('input[name="peopleCount"]').value,
+                    date: form.querySelector('input[name="date"]').value,
+                    time: form.querySelector('input[name="time"]').value,
+                    message: form.querySelector('textarea').value
                 };
 
                 emailjs.send('service_yzf0i0q', 'template_91dte9w', formData)
                     .then(function (response) {
                         showModal('Your message has been sent successfully!');
+                        clearForm(form);
                     }, function (error) {
                         showModal('Failed to send your message. Please try again.');
                     });
@@ -169,6 +187,15 @@
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
+        }
+
+        function clearForm(form) {
+            form.reset();
+            // Clear any custom styling or classes that might have been added
+            form.querySelectorAll('input, textarea').forEach(function(element) {
+                element.classList.remove('filled');
+                element.nextElementSibling.classList.remove('filled');
+            });
         }
     </script>
 </body>
