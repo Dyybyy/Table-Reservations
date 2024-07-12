@@ -112,7 +112,7 @@
                             <span>Email</span>
                         </div>
                         <div class="inputBox w50">
-                            <input type="number" name="number" id="mobileNumber" required>
+                            <input type="number" name="mobileNumber" id="mobileNumber" required>
                             <span>Mobile Number</span>
                         </div>
                         <div class="inputBox w50">
@@ -148,16 +148,16 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
         (function(){
-            emailjs.init("7BYzg_CUnCpuaxYDm"); 
+            emailjs.init("7BYzg_CUnCpuaxYDm"); // Replace with your EmailJS user ID
         })();
 
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.querySelector('form');
             form.addEventListener('submit', function (event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent default form submission
 
                 var formData = {
                     firstName: form.querySelector('input[name="firstName"]').value,
@@ -191,11 +191,6 @@
 
         function clearForm(form) {
             form.reset();
-            // Clear any custom styling or classes that might have been added
-            form.querySelectorAll('input, textarea').forEach(function(element) {
-                element.classList.remove('filled');
-                element.nextElementSibling.classList.remove('filled');
-            });
         }
     </script>
 </body>
