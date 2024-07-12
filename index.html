@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="contactInfo">
+                <div>
+                    <h2>Contact Info</h2>
+                    <ul class="info">
+                        <li>
+                            <span><img src="img/location.png" alt=""></span>
+                            <span>
+                                sulaymaniyah<br>
+                                Aqare<br>
+                                
+                            </span>
+                        </li>
+                        <li>
+                            <span><img src="img/mail.png" alt=""></span>
+                            <span>Netcafe@gmail.com</span>
+                        </li>
+                        <li>
+                            <span><img src="img/call.png" alt=""></span>
+                            <span>07708920909</span>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="socialIcon">
+                    <li><a href="https://www.facebook.com/amnasurakanetcafe/"><img src="img/1.png" alt=""></a></li>
+                    <li><a href="https://www.instagram.com/net_cafe.amna_suraka/?hl=en"><img src="img/3.png" alt=""></a></li>
+                </ul>
+            </div>
+
+            <div class="contactForm">
+                <h2>Table Reservations</h2>
+                <form>
+                    <div class="formBox">
+                        <div class="inputBox w50">
+                            <input type="text" name="firstName" id="firstName" required>
+                            <span>First Name</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="text" name="lastName" id="lastName" required>
+                            <span>Last Name</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="email" name="email" id="email" required>
+                            <span>Email</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="tel" name="mobileNumber" id="mobileNumber" required>
+                            <span>Mobile Number</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="number" name="peopleCount" id="peopleCount" min="1" max="20" required>
+                            <span>How many people</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="date" name="date" id="date" required>
+                            <span>Date</span>
+                        </div>
+                        <div class="inputBox w50">
+                            <input type="time" name="time" id="time" required>
+                            <span>Time</span>
+                        </div>
+                        <div class="inputBox w100">
+                            <textarea name="message" id="message" required></textarea>
+                            <span>Write Your Message Here.</span>
+                        </div>
+                        <div class="inputBox w100">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
+        })();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set current date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('date').value = today;
+
+            // Set current time
+            var now = new Date();
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var currentTime = hours + ':' + minutes;
+            document.getElementById('time').value = currentTime;
+
+            // Form submission
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Collect form data
+                var formData = {
+                    firstName: event.target.querySelector('input[name="firstName"]').value,
+                    lastName: event.target.querySelector('input[name="lastName"]').value,
+                    email: event.target.querySelector('input[name="email"]').value,
+                    mobileNumber: event.target.querySelector('input[name="mobileNumber"]').value,
+                    peopleCount: event.target.querySelector('input[name="peopleCount"]').value,
+                    date: event.target.querySelector('input[name="date"]').value,
+                    time: event.target.querySelector('input[name="time"]').value,
+                    message: event.target.querySelector('textarea').value
+                };
+
+                // Send email using EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                    .then(function (response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        alert('Your message has been sent successfully!');
+                    }, function (error) {
+                        console.error('FAILED...', error);
+                        alert('Failed to send your message. Please try again.');
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
