@@ -6,6 +6,114 @@
     <title>Contact Form</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .logo img {
+            max-width: 250px;
+            height: auto;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contactInfo, .contactForm {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .contactInfo {
+            width: calc(40% - 10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contactForm {
+            width: calc(60% - 10px);
+        }
+
+        .contactInfo h2 {
+            margin-bottom: 30px;
+            color: #28a745;
+            font-size: 28px;
+        }
+
+        .info {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .info li span:first-child {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .info li span:first-child img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .socialIcon {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .socialIcon li {
+            margin: 0 15px;
+        }
+
+        .socialIcon li a img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .socialIcon li a img:hover {
+            transform: scale(1.1);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -17,6 +125,7 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.7);
         }
+
         .modal-content {
             position: relative;
             top: 50%;
@@ -28,14 +137,17 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
+
         .modal-content h2 {
             margin: 0 0 20px;
             color: #28a745;
         }
+
         .modal-content p {
             margin: 0 0 20px;
             color: #6c757d;
         }
+
         .modal-content button {
             padding: 10px 20px;
             background-color: #28a745;
@@ -44,9 +156,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .modal-content button:hover {
             background-color: #218838;
         }
+
         .reservation-note {
             background-color: #f8d7da;
             border: 1px solid #f5c6cb;
@@ -55,87 +169,190 @@
             margin-bottom: 20px;
             border-radius: 5px;
         }
+
         .reservation-note p {
             margin: 0;
+        }
+
+        .contactForm h2 {
+            margin-bottom: 20px;
+            color: #28a745;
+        }
+
+        .formBox {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .inputBox {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .inputBox.w50 {
+            width: 48%;
+        }
+
+        .inputBox.w100 {
+            width: 100%;
+        }
+
+        .inputBox input, .inputBox textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .inputBox span {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            padding: 10px 0;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .inputBox input:focus + span,
+        .inputBox input:valid + span,
+        .inputBox textarea:focus + span,
+        .inputBox textarea:valid + span {
+            top: -20px;
+            left: 10px;
+            color: #28a745;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .inputBox input[type="submit"] {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .inputBox input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .contactInfo, .contactForm {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .info li {
+                font-size: 16px;
+            }
+
+            .socialIcon li a img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .inputBox.w50 {
+                width: 100%;
+            }
+
+            .formBox {
+                flex-direction: column;
+            }
+
+            .inputBox span {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <section>
         <div class="container">
-            <div class="contactInfo">
-                <div>
-                    <h2>Contact Info</h2>
-                    <ul class="info">
-                        <li>
-                            <span><img src="img/location.png" alt="Location Icon"></span>
-                            <span>
-                                Sulaymaniyah<br>
-                                Aqare<br>
-                            </span>
-                        </li>
-                        <li>
-                            <span><img src="img/mail.png" alt="Mail Icon"></span>
-                            <span>Netcafe@gmail.com</span>
-                        </li>
-                        <li>
-                            <span><img src="img/call.png" alt="Call Icon"></span>
-                            <span>07708920909</span>
-                        </li>
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnqlOauN7bf9GuCF7AH9eS4yS43bWUgOkXRw&s" alt="Restaurant Logo">
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="contactInfo">
+                    <div>
+                        <h2>Contact Info</h2>
+                        <ul class="info">
+                            <li>
+                                <span><img src="img/location.png" alt="Location Icon"></span>
+                                <span>
+                                    Sulaymaniyah<br>
+                                    Aqare
+                                </span>
+                            </li>
+                            <li>
+                                <span><img src="img/mail.png" alt="Mail Icon"></span>
+                                <span>Netcafe@gmail.com</span>
+                            </li>
+                            <li>
+                                <span><img src="img/call.png" alt="Call Icon"></span>
+                                <span>07708920909</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="socialIcon">
+                        <li><a href="https://www.facebook.com/amnasurakanetcafe/"><img src="img/1.png" alt="Facebook Icon"></a></li>
+                        <li><a href="https://www.instagram.com/net_cafe.amna_suraka/?hl=en"><img src="img/3.png" alt="Instagram Icon"></a></li>
                     </ul>
                 </div>
-                <ul class="socialIcon">
-                    <li><a href="https://www.facebook.com/amnasurakanetcafe/"><img src="img/1.png" alt="Facebook Icon"></a></li>
-                    <li><a href="https://www.instagram.com/net_cafe.amna_suraka/?hl=en"><img src="img/3.png" alt="Instagram Icon"></a></li>
-                </ul>
-            </div>
 
-            <div class="contactForm">
-                <h2>Table Reservations</h2>
-                
-                <div class="reservation-note">
-                    <p><strong>Note:</strong> All reservations end at 8:00 PM.</p>
-                </div>
-                
-                <form>
-                    <div class="formBox">
-                        <div class="inputBox w50">
-                            <input type="text" name="firstName" id="firstName" required>
-                            <span>First Name</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="text" name="lastName" id="lastName" required>
-                            <span>Last Name</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="email" name="email" id="email" required>
-                            <span>Email</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="number" name="mobileNumber" id="mobileNumber" required>
-                            <span>Mobile Number</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="number" name="peopleCount" id="peopleCount" min="1" max="20" required>
-                            <span>How many people</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="date" name="date" id="date" required>
-                            <span>Date</span>
-                        </div>
-                        <div class="inputBox w50">
-                            <input type="time" name="time" id="time" required>
-                            <span>Time</span>
-                        </div>
-                        <div class="inputBox w100">
-                            <textarea name="message" id="message" required></textarea>
-                            <span>Write Your Message Here.</span>
-                        </div>
-                        <div class="inputBox w100">
-                            <input type="submit" value="Submit">
-                        </div>
+                <div class="contactForm">
+                    <h2>Table Reservations</h2>
+                    
+                    <div class="reservation-note">
+                        <p><strong>Note:</strong> All reservations end at 8:00 PM.</p>
                     </div>
-                </form>
+                    
+                    <form>
+                        <div class="formBox">
+                            <div class="inputBox w50">
+                                <input type="text" name="firstName" id="firstName" required>
+                                <span>First Name</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="text" name="lastName" id="lastName" required>
+                                <span>Last Name</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="email" name="email" id="email" required>
+                                <span>Email</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="number" name="mobileNumber" id="mobileNumber" required>
+                                <span>Mobile Number</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="number" name="peopleCount" id="peopleCount" min="1" max="20" required>
+                                <span>How many people</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="date" name="date" id="date" required>
+                                <span>Date</span>
+                            </div>
+                            <div class="inputBox w50">
+                                <input type="time" name="time" id="time" required>
+                                <span>Time</span>
+                            </div>
+                            <div class="inputBox w100">
+                                <textarea name="message" id="message" required></textarea>
+                                <span>Write Your Message Here.</span>
+                            </div>
+                            <div class="inputBox w100">
+                                <input type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -157,40 +374,21 @@
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.querySelector('form');
             form.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault();
 
-                var formData = {
-                    firstName: form.querySelector('input[name="firstName"]').value,
-                    lastName: form.querySelector('input[name="lastName"]').value,
-                    email: form.querySelector('input[name="email"]').value,
-                    mobileNumber: form.querySelector('input[name="mobileNumber"]').value,
-                    peopleCount: form.querySelector('input[name="peopleCount"]').value,
-                    date: form.querySelector('input[name="date"]').value,
-                    time: form.querySelector('input[name="time"]').value,
-                    message: form.querySelector('textarea').value
-                };
-
-                emailjs.send('service_yzf0i0q', 'template_91dte9w', formData)
-                    .then(function (response) {
-                        showModal('Your message has been sent successfully!');
-                        clearForm(form);
-                    }, function (error) {
-                        showModal('Failed to send your message. Please try again.');
+                emailjs.sendForm('service_yzf0i0q', 'template_91dte9w', this)
+                    .then(function() {
+                        document.getElementById('modal-message').textContent = 'Reservation Successful!';
+                        document.getElementById('modal').style.display = 'block';
+                    }, function(error) {
+                        document.getElementById('modal-message').textContent = 'Reservation Failed!';
+                        document.getElementById('modal').style.display = 'block';
                     });
             });
         });
 
-        function showModal(message) {
-            document.getElementById('modal-message').textContent = message;
-            document.getElementById('modal').style.display = 'block';
-        }
-
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
-        }
-
-        function clearForm(form) {
-            form.reset();
         }
     </script>
 </body>
