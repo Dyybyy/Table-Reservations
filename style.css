@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic');
 
 * {
     margin: 0;
@@ -7,139 +7,116 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
 section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8c8c8;
     padding: 20px;
 }
 
 .container {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    min-height: 550px;
-    display: flex;
-    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
     background-color: #fff;
-    box-shadow: 0 50px 50px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.container .contactInfo {
-    position: relative;
-    top: 0;
+.logo {
+    text-align: center;
+    padding: 20px;
     background-color: #fa4c4c;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
 }
 
-.container .contactForm {
-    position: relative;
-    padding: 40px;
-    background-color: #fff;
+.logo img {
+    max-width: 300px;
+    height: auto;
+    
 }
 
-.container .contactInfo h2,
-.container .contactForm h2 {
+.contactInfo, .contactForm {
+    padding: 30px;
+}
+
+.contactInfo {
+    background-color: #fa4c4c;
     color: #fff;
+}
+
+h2 {
+    margin-bottom: 20px;
     font-size: 24px;
     font-weight: 500;
+}
+
+.info {
+    list-style: none;
     margin-bottom: 20px;
 }
 
-.container .contactForm h2 {
-    color: #0f3959;
-}
-
-.container .contactInfo ul.info {
-    margin-bottom: 20px;
-}
-
-.container .contactInfo ul.info li {
-    position: relative;
-    list-style-type: none;
+.info li {
     display: flex;
-    margin: 20px 0;
-    cursor: pointer;
     align-items: center;
+    margin-bottom: 15px;
 }
 
-.container .contactInfo ul.info li span:nth-child(1) {
+.info li span:first-child {
     width: 30px;
-    min-width: 30px;
+    margin-right: 10px;
 }
 
-.container .contactInfo ul.info li span img {
+.info li span img {
     max-width: 100%;
     filter: invert(1);
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
-.container .contactInfo ul.info li span:nth-child(2) {
-    color: #fff;
-    margin-left: 10px;
-    font-weight: 300;
-    opacity: 0.5;
-}
-
-.container .contactInfo ul.info li:hover span img,
-.container .contactInfo ul.info li:hover span:nth-child(2) {
-    opacity: 1;
-}
-
-.container .contactInfo ul.socialIcon {
-    position: relative;
+.socialIcon {
+    list-style: none;
     display: flex;
+    justify-content: center;
 }
 
-.container .contactInfo ul.socialIcon li {
-    list-style-type: none;
-    margin-right: 15px;
+.socialIcon li {
+    margin: 0 10px;
 }
 
-.container .contactInfo ul.socialIcon li a img {
+.socialIcon li a img {
+    width: 30px;
+    height: 30px;
     filter: invert(1);
-    opacity: 0.5;
-    max-width: 30px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
 }
 
-.container .contactInfo ul.socialIcon li a img:hover {
+.socialIcon li a img:hover {
     opacity: 1;
 }
 
-.container .contactForm .formBox {
+.reservation-note {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.formBox {
+    margin-top: 20px;
+}
+
+.inputBox {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-top: 30px;
+    margin-bottom: 20px;
 }
 
-.container .contactForm .formBox .inputBox {
-    position: relative;
-    margin: 0 0 35px 0;
+.inputBox input, .inputBox textarea {
     width: 100%;
-}
-
-.container .contactForm .formBox .inputBox.w50 {
-    width: 47%;
-}
-
-.container .contactForm .formBox .inputBox.w100 {
-    width: 100%;
-}
-
-.container .contactForm .formBox .inputBox input,
-.container .contactForm .formBox .inputBox textarea {
-    width: 100%;
-    resize: none;
-    padding: 10px 12px;
+    padding: 10px;
     font-size: 16px;
     color: #333;
     border: 1px solid #ccc;
@@ -148,15 +125,9 @@ section {
     transition: 0.3s;
 }
 
-.container .contactForm .formBox .inputBox input:focus,
-.container .contactForm .formBox .inputBox textarea:focus {
-    outline: none;
-    border-color: #fa4c4c;
-}
-
-.container .contactForm .formBox .inputBox span {
+.inputBox span {
     position: absolute;
-    left: 12px;
+    left: 10px;
     top: 10px;
     padding: 0 5px;
     pointer-events: none;
@@ -166,72 +137,131 @@ section {
     background-color: #fff;
 }
 
-.container .contactForm .formBox .inputBox input:focus ~ span,
-.container .contactForm .formBox .inputBox input:valid ~ span,
-.container .contactForm .formBox .inputBox textarea:focus ~ span,
-.container .contactForm .formBox .inputBox textarea:valid ~ span {
-    transform: translateY(-22px);
+.inputBox input:focus,
+.inputBox input:valid,
+.inputBox textarea:focus,
+.inputBox textarea:valid {
+    border-color: #fa4c4c;
+}
+
+.inputBox input:focus ~ span,
+.inputBox input:valid ~ span,
+.inputBox textarea:focus ~ span,
+.inputBox textarea:valid ~ span {
+    transform: translateY(-20px);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
     color: #fa4c4c;
 }
 
-.container .contactForm .formBox .inputBox input[type="date"] {
-    color: transparent;
-}
-
-.container .contactForm .formBox .inputBox input[type="date"]:focus,
-.container .contactForm .formBox .inputBox input[type="date"]:valid {
-    color: #333;
-}
-
-.container .contactForm .formBox .inputBox input[type="date"]::-webkit-calendar-picker-indicator {
-    background-color: #fa4c4c;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.container .contactForm .formBox .inputBox input[type="time"]::-webkit-calendar-picker-indicator {
-    background-color: #fa4c4c;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.container .contactForm .formBox .inputBox input[type="submit"] {
-    position: relative;
-    cursor: pointer;
+.inputBox input[type="submit"] {
     background-color: #fa4c4c;
     color: #fff;
     border: none;
-    padding: 12px;
+    cursor: pointer;
     font-weight: 500;
-    transition: 0.3s;
 }
 
-.container .contactForm .formBox .inputBox input[type="submit"]:hover {
+.inputBox input[type="submit"]:hover {
     background-color: #e63e3e;
 }
 
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-    }
-
-    .container .contactInfo {
-        width: 350px;
-        height: 100%;
-    }
-
-    .container .contactForm {
-        width: calc(100% - 350px);
-    }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
 }
 
-@media (max-width: 767px) {
-    .container .contactForm .formBox .inputBox.w50 {
-        width: 100%;
-    }
+.modal-content {
+    background-color: #f8f9fa;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
 }
+
+.modal-content h2 {
+    color: #28a745;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.modal-content button:hover {
+    background-color: #218838;
+}
+
+/* Styles for all input fields and textarea */
+.inputBox input,
+.inputBox textarea {
+    padding-right: 10px;
+}
+
+.inputBox input + span,
+.inputBox textarea + span {
+    transform: translateY(-20px);
+    font-size: 12px;
+    color: #fa4c4c;
+}
+
+.inputBox input:placeholder-shown + span,
+.inputBox textarea:placeholder-shown + span {
+    transform: translateY(0);
+    font-size: 16px;
+    color: #666;
+}
+
+.inputBox input:focus + span,
+.inputBox input:not(:placeholder-shown) + span,
+.inputBox textarea:focus + span,
+.inputBox textarea:not(:placeholder-shown) + span {
+    transform: translateY(-20px);
+    font-size: 12px;
+    color: #fa4c4c;
+}
+
+/* Specific styles for date and time inputs */
+.inputBox input[type="date"]::-webkit-calendar-picker-indicator,
+.inputBox input[type="time"]::-webkit-calendar-picker-indicator {
+    background-color: #fa4c4c;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.inputBox input[type="date"]::-webkit-datetime-edit,
+.inputBox input[type="time"]::-webkit-datetime-edit {
+    color: transparent;
+}
+
+.inputBox input[type="date"]:focus::-webkit-datetime-edit,
+.inputBox input[type="time"]:focus::-webkit-datetime-edit,
+.inputBox input[type="date"]:valid::-webkit-datetime-edit,
+.inputBox input[type="time"]:valid::-webkit-datetime-edit {
+    color: #333;
+}
+
+/* Style for number input */
+.inputBox input[type="number"]::-webkit-inner-spin-button,
+.inputBox input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inputBox input[type="number"] {
+    -moz-appearance: textfield;
+}
+
