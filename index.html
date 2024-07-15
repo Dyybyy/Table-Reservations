@@ -48,11 +48,11 @@
                 <form>
                     <div class="formBox">
                         <div class="inputBox">
-                            <input type="text" name="firstName" id="firstName" required>
+                            <input type="text" name="firstName" id="firstName" required pattern="^[a-zA-Z\s]+$" maxlength="10" title="Please enter a valid first name (letters only, up to 10 characters).">
                             <span>First Name</span>
                         </div>
                         <div class="inputBox">
-                            <input type="text" name="lastName" id="lastName" required>
+                            <input type="text" name="lastName" id="lastName" required pattern="^[a-zA-Z\s]+$" maxlength="10" title="Please enter a valid last name (letters only, up to 10 characters).">
                             <span>Last Name</span>
                         </div>
                         <div class="inputBox">
@@ -60,7 +60,7 @@
                             <span>Email</span>
                         </div>
                         <div class="inputBox">
-                            <input type="tel" name="mobileNumber" id="mobileNumber" required pattern="(077[0-7]|075[0-7]|078[0-7])\d{7}">
+                            <input type="tel" name="mobileNumber" id="mobileNumber" required pattern="(077[0-7]|075[0-7]|078[0-7])\d{7}" title="Please enter a valid mobile number starting with 077, 075, or 078.">
                             <span>Mobile Number (Iraqi numbers only)</span>
                         </div>
                         <div class="inputBox">
@@ -98,6 +98,38 @@
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
+        
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    // Existing code...
+
+    const timeInput = document.getElementById('time');
+
+    timeInput.addEventListener('input', function () {
+        const selectedTime = this.value;
+        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
+
+        if (selectedTime < '08:00' || selectedTime > '20:00') {
+            timeInput.setCustomValidity('Please select a time between 8:00 AM and 8:00 PM.');
+            timeInput.classList.add('invalid');
+        } else {
+            timeInput.setCustomValidity('');
+            timeInput.classList.remove('invalid');
+        }
+    });
+
+    // Existing code...
+});
+
+
+
+
+
+
         (function(){
             emailjs.init("7BYzg_CUnCpuaxYDm"); // Replace with your EmailJS user ID
         })();
@@ -105,6 +137,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.querySelector('form');
             const dateInput = document.getElementById('date');
+            const timeInput = document.getElementById('time');
+            const messageTextarea = document.getElementById('message');
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], input[type="time"], textarea');
 
             // Set the minimum date to today
             const today = new Date().toISOString().split('T')[0];
@@ -124,11 +159,40 @@
                 }
             });
 
+            function validateInput(input) {
+                if (input.checkValidity()) {
+                    input.classList.add('valid');
+                    input.classList.remove('invalid');
+                } else {
+                    input.classList.add('invalid');
+                    input.classList.remove('valid');
+                }
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateInput(this);
+                });
+
+                input.addEventListener('input', function() {
+                    validateInput(this);
+                });
+            });
+
             form.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevent the default form submission
 
-                // Validate the mobile number
-             
+                let isValid = true;
+                inputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        input.classList.add('invalid');
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    return;
+                }
 
                 // Send the form data using EmailJS
                 emailjs.sendForm('service_yzf0i0q', 'template_91dte9w', this)
@@ -136,6 +200,11 @@
                         document.getElementById('modal-message').textContent = 'Reservation Successful!';
                         document.getElementById('modal').style.display = 'block';
                         form.reset(); // Optionally reset the form after successful submission
+                        // Reset validation classes
+                        inputs.forEach(input => {
+                            input.classList.remove('valid');
+                            input.classList.remove('invalid');
+                        });
                     }, function(error) {
                         document.getElementById('modal-message').textContent = 'Reservation Failed!';
                         document.getElementById('modal').style.display = 'block';
@@ -145,10 +214,6 @@
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
-        }
-
-        function isValidIraqiNumber(number) {
-            return /^(077|078)\d{7}$/.test(number); // Validates if number starts with 077 or 078 and has 7 digits following
         }
     </script>
 </body>

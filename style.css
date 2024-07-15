@@ -34,7 +34,6 @@ section {
 .logo img {
     max-width: 300px;
     height: auto;
-    
 }
 
 .contactInfo, .contactForm {
@@ -265,3 +264,25 @@ h2 {
     -moz-appearance: textfield;
 }
 
+/* Styles for valid and invalid inputs */
+.inputBox input.valid,
+.inputBox input[type="date"].valid,
+.inputBox input[type="time"].valid,
+.inputBox textarea.valid {
+    border-color: #28a745;
+    background-color: #d4edda;
+}
+
+.inputBox input.invalid,
+.inputBox input[type="date"].invalid,
+.inputBox input[type="time"].invalid,
+.inputBox textarea.invalid {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+}
+
+/* Ensure the date and time inputs show text properly when valid */
+.inputBox input[type="date"].valid::-webkit-datetime-edit,
+.inputBox input[type="time"].valid::-webkit-datetime-edit {
+    color: #333;
+}
