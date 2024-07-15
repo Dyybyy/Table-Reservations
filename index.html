@@ -9,33 +9,53 @@
 <body>
     <section>
         <div class="container">
-            <div class="logo">
-                <img src="img/file.png" alt="Restaurant Logo" style="background-color: #fa4c4c;">
-            </div>
-            
-            <div class="contactInfo">
-                <h2>Contact Info</h2>
-                <ul class="info">
-                    <li>
-                        <span class="icon"><img src="img/location.png" alt="Location Icon"></span>
-                        <span class="details">
-                            Sulaymaniyah<br>
-                            Aqare
-                        </span>
-                    </li>
-                    <li>
-                        <span class="icon"><img src="img/mail.png" alt="Mail Icon"></span>
-                        <span class="details">Netcafe@gmail.com</span>
-                    </li>
-                    <li>
-                        <span class="icon"><img src="img/call.png" alt="Call Icon"></span>
-                        <span class="details">07708920909</span>
-                    </li>
-                </ul>
-                <ul class="socialIcon">
-                    <li><a href="https://www.facebook.com/amnasurakanetcafe/"><img src="img/1.png" alt="Facebook Icon"></a></li>
-                    <li><a href="https://www.instagram.com/net_cafe.amna_suraka/?hl=en"><img src="img/3.png" alt="Instagram Icon"></a></li>
-                </ul>
+            <div class="header-section">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="img/file.png" alt="Restaurant Logo">
+                    </div>
+                    <h1 class="restaurant-name">Net Cafe</h1>
+                </div>
+                
+                <div class="contactInfo">
+                    <h2>Contact Info</h2>
+                    <div class="info-container">
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <img src="img/location.png" alt="Location Icon">
+                            </div>
+                            <div class="info-text">
+                                <h3>Address</h3>
+                                <p>Sulaymaniyah<br>Aqare</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <img src="img/mail.png" alt="Mail Icon">
+                            </div>
+                            <div class="info-text">
+                                <h3>Email</h3>
+                                <p>Netcafe@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-circle">
+                                <img src="img/call.png" alt="Call Icon">
+                            </div>
+                            <div class="info-text">
+                                <h3>Phone</h3>
+                                <p>07708920909</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-container">
+                        <h3>Follow Us</h3>
+                        <ul class="socialIcon">
+                            <li><a href="https://www.facebook.com/amnasurakanetcafe/"><img src="img/1.png" alt="Facebook Icon"></a></li>
+                            <li><a href="https://www.instagram.com/net_cafe.amna_suraka/?hl=en"><img src="img/3.png" alt="Instagram Icon"></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="contactForm">
@@ -98,38 +118,6 @@
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        
-
-
-
-
-
-        document.addEventListener('DOMContentLoaded', function () {
-    // Existing code...
-
-    const timeInput = document.getElementById('time');
-
-    timeInput.addEventListener('input', function () {
-        const selectedTime = this.value;
-        const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
-
-        if (selectedTime < '08:00' || selectedTime > '20:00') {
-            timeInput.setCustomValidity('Please select a time between 8:00 AM and 8:00 PM.');
-            timeInput.classList.add('invalid');
-        } else {
-            timeInput.setCustomValidity('');
-            timeInput.classList.remove('invalid');
-        }
-    });
-
-    // Existing code...
-});
-
-
-
-
-
-
         (function(){
             emailjs.init("7BYzg_CUnCpuaxYDm"); // Replace with your EmailJS user ID
         })();
@@ -179,6 +167,19 @@
                 });
             });
 
+            timeInput.addEventListener('input', function () {
+                const selectedTime = this.value;
+                const currentTime = new Date().toLocaleTimeString('en-US', { hour12: false });
+
+                if (selectedTime < '08:00' || selectedTime > '20:00') {
+                    timeInput.setCustomValidity('Please select a time between 8:00 AM and 8:00 PM.');
+                    timeInput.classList.add('invalid');
+                } else {
+                    timeInput.setCustomValidity('');
+                    timeInput.classList.remove('invalid');
+                }
+            });
+
             form.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevent the default form submission
 
@@ -216,5 +217,13 @@
             document.getElementById('modal').style.display = 'none';
         }
     </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Net Cafe. All rights reserved.</p>
+            <p>Created by Debar Osman</p>
+        </div>
+    </footer>
+
 </body>
 </html>

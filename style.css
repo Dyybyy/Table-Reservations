@@ -25,74 +25,159 @@ section {
     overflow: hidden;
 }
 
-.logo {
+.logo-container {
+    background: linear-gradient(135deg, #fa4c4c, #fa4c4c);
+    padding: 40px;
     text-align: center;
-    padding: 20px;
-    background-color: #fa4c4c;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 150px; /* Increased size */
+    height: 150px; /* Increased size */
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Added box shadow for depth */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1); /* Scale up on hover */
 }
 
 .logo img {
-    max-width: 300px;
-    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image fits within the container */
 }
 
-.contactInfo, .contactForm {
-    padding: 30px;
+.restaurant-name {
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .contactInfo {
-    background-color: #fa4c4c;
+    background: linear-gradient(135deg, #fa4c4c, #fa4c4c);
     color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: -30px; /* This ensures smooth merging */
 }
 
-h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 500;
+.contactInfo h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.info {
-    list-style: none;
-    margin-bottom: 20px;
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.info li {
+.info-item {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info li span:first-child {
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.icon-circle img {
     width: 30px;
-    margin-right: 10px;
+    height: 30px;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
 }
 
-.info li span img {
-    max-width: 100%;
-    filter: invert(1);
-    opacity: 0.8;
+.info-text h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.info-text p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.social-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .socialIcon {
     list-style: none;
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
 
-.socialIcon li {
-    margin: 0 10px;
+.socialIcon li a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.socialIcon li a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .socialIcon li a img {
-    width: 30px;
-    height: 30px;
-    filter: invert(1);
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    width: 25px;
+    height: 25px;
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
 }
 
-.socialIcon li a img:hover {
-    opacity: 1;
+.contactForm {
+    padding: 30px;
+}
+
+.contactForm h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .reservation-note {
@@ -203,7 +288,6 @@ h2 {
     background-color: #218838;
 }
 
-/* Styles for all input fields and textarea */
 .inputBox input,
 .inputBox textarea {
     padding-right: 10px;
@@ -232,7 +316,6 @@ h2 {
     color: #fa4c4c;
 }
 
-/* Specific styles for date and time inputs */
 .inputBox input[type="date"]::-webkit-calendar-picker-indicator,
 .inputBox input[type="time"]::-webkit-calendar-picker-indicator {
     background-color: #fa4c4c;
@@ -253,7 +336,6 @@ h2 {
     color: #333;
 }
 
-/* Style for number input */
 .inputBox input[type="number"]::-webkit-inner-spin-button,
 .inputBox input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -264,7 +346,6 @@ h2 {
     -moz-appearance: textfield;
 }
 
-/* Styles for valid and invalid inputs */
 .inputBox input.valid,
 .inputBox input[type="date"].valid,
 .inputBox input[type="time"].valid,
@@ -281,8 +362,55 @@ h2 {
     background-color: #f8d7da;
 }
 
-/* Ensure the date and time inputs show text properly when valid */
 .inputBox input[type="date"].valid::-webkit-datetime-edit,
 .inputBox input[type="time"].valid::-webkit-datetime-edit {
     color: #333;
 }
+
+.footer {
+    background-color: #fa4c4c;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+
+.inputBox input,
+.inputBox textarea {
+    width: 100%; /* Ensure full width */
+    padding: 19px; /* Increase padding for a larger appearance */
+    font-size: 19px; 
+    color: #333;
+    border: 1px solid #fa4c4c;
+    border-radius: 50px;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+
+.logo {
+    width: 200px; /* Increased size */
+    height: 200px; /* Increased size */
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Added box shadow for depth */
+    transition: transform 0.3s ease;
+}
+
+
+
